@@ -18,7 +18,20 @@ const Player: React.FC = () => {
   }, [player]);
 
   const initPlyr = () => {
-    const p = new Plyr("#player", {});
+    const p = new Plyr("#player", {
+      controls: [
+        "play-large",
+        "play",
+        "rewind",
+        "fast-forward",
+        "progress",
+        "current-time",
+        "mute",
+        "volume",
+        "captions",
+        "fullscreen",
+      ],
+    });
     p.source = {
       type: "video",
       title: "A heist with Markiplier",
