@@ -1,0 +1,7 @@
+@import "./_breakpoints.scss";
+
+.player {
+  @include md-up {
+    // max-width: 75vw;
+  }
+}
