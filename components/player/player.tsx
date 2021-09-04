@@ -74,6 +74,17 @@ const Player: React.FC = () => {
     if (!player) return;
   }, [player]);
 
+  useEffect(() => {
+    if (!player) return;
+    rebind();
+  }, [player?.source]);
+
+  const rebind = () => {
+    player.off("timeupdate", handleTimeChange);
+    player.on("timeupdate", handleTimeChange);
+    console.log("rebinding events");
+  };
+
   const doubleClickHanlder = (event) => {
     event.preventDefault();
   };

@@ -613,7 +613,7 @@ export const choiceGroupData: IChoiceGroup[] = [
     type: "default",
     showAt: 187,
     choices: [
-      { text: "Split Up", nextChoiceGroupWatchCode: "WLDw07ew24g" },
+      { text: "Split Up", nextChoiceGroupWatchCode: "jH_OAoT-icU" },
       { text: "Don't Split Up", nextChoiceGroupWatchCode: "POf2YIskmn4" },
     ],
   },
