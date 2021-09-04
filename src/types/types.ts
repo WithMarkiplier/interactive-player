@@ -1,6 +1,7 @@
 export interface IChoiceGroup {
   watchCode: string;
   title?: string;
+  showAt?: number;
   choices?: IChoice[];
   type: ChoiceGroupType;
   ending?: IEnding;

@@ -4,4 +4,25 @@
   @include md-up {
     // max-width: 75vw;
   }
+
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.choiceBarContainer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1500;
+}
+
+.choiceHistoryContainer {
+  position: absolute;
+  bottom: 150px;
+  left: 0;
+  right: 0;
+  z-index: 1500;
 }
