@@ -6,6 +6,7 @@ import React, { useEffect, useState } from "react";
 import { choiceGroupData } from "../../src/data/data";
 import { useAppContext } from "../../src/hooks";
 import { IChoice } from "../../src/types/types";
+import ReactGA from "react-ga";
 
 const ChoiceBar: React.FC = () => {
   const {
@@ -16,15 +17,15 @@ const ChoiceBar: React.FC = () => {
     playerRef,
     endings,
     setEndings,
+    currentCG,
+    setCurrentCG,
     choiceBarVisible,
     setChoiceBarVisible,
   } = useAppContext();
 
-  const cg = cgs.reverse()[0];
-  const { choices, showAt, type } = cg;
+  const { choices, type } = currentCG;
 
-  const [currentChoices, setCurrentChoices] = useState(choices);
-
+  const [currentChoices, setCurrentChoices] = useState(choices ?? []);
 
   useEffect(() => {
     const { choices, type: t } = cgs.reverse()[0];
@@ -32,27 +33,11 @@ const ChoiceBar: React.FC = () => {
     setCurrentChoices(choices);
   }, [cgs]);
 
-  // useEffect(() => {
-  //   if (
-  //     !visible &&
-  //     currentTime > 0 &&
-  //     (showAt ? currentTime > showAt : currentTime > player?.duration - 30) &&
-  //     type !== "end"
-  //   ) {
-  //     setVisible(true);
-  //   }
-  //   if (
-  //     currentTime > 0 &&
-  //     (showAt ? currentTime > showAt : currentTime > player?.duration - 30) &&
-  //     type === "end"
-  //   ) {
-  //     // TODO: Handle unlock ending
-  //     const e = [...endings.filter((x) => x !== cg), cg].sort(
-  //       (a, b) => a.ending.endingNumber - b.ending.endingNumber
-  //     );
-  //     setEndings(e);
-  //   }
-  // }, [currentTime]);
+  useEffect(() => {
+    if (currentCG.type !== "end") {
+      setCurrentChoices(currentCG.choices);
+    } else setCurrentChoices([]);
+  }, [currentCG]);
 
   const handleChoice = (choice: IChoice) => {
     const ncg = choiceGroupData.find(
@@ -61,7 +46,7 @@ const ChoiceBar: React.FC = () => {
 
     const src: Plyr.SourceInfo = {
       type: "video",
-      title: ncg.title,
+      title: ncg.videoTitle,
       sources: [
         {
           src: `https://www.youtube.com/watch?v=${ncg.watchCode}`,
@@ -75,17 +60,28 @@ const ChoiceBar: React.FC = () => {
 
     setTimeout(() => {
       player.play();
+      setCurrentCG(ncg);
       setChoices([...cgs, ncg]);
     }, 700);
+
+    try {
+      ReactGA.event({
+        category: "video_choice",
+        action: "Made decision",
+        label: `${choice.text} -> ${ncg.watchCode}`,
+      });
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   if (!playerRef) return null;
-  if (type == "end") return null;
+  if (currentCG.type === "end") return null;
 
   if (!currentChoices) return null;
 
   return (
-    <Fade in={choiceBarVisible} unmountOnExit>
+    <Fade in={choiceBarVisible && type !== "end"} unmountOnExit>
       <Paper className="d-flex justify-content-around py-4">
         {currentChoices.map((x) => (
           <Button

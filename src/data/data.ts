@@ -1,18 +1,24 @@
 import { IChoiceGroup } from "../types/types";
 
+const xIncrement = 200;
+const yIncrement = 75;
+const yBase = 300;
+const xBase = 0;
+
 export const choiceGroupData: IChoiceGroup[] = [
   {
-    title: "A Heist with Markiplier",
+    videoTitle: "A Heist with Markiplier",
     watchCode: "9TjfkXmwbTs",
     type: "start",
     showAt: 330,
     choices: [
-      { text: "All sneaky like", nextChoiceGroupWatchCode: "dHEAIpQDPdA" },
+      { text: "All Sneaky like", nextChoiceGroupWatchCode: "dHEAIpQDPdA" },
       { text: "Guns Blazing", nextChoiceGroupWatchCode: "AJUy9Q3RGl8" },
     ],
+    coordinates: [xBase, yBase],
   },
   {
-    title: "Guns Blazing",
+    videoTitle: "Guns Blazing",
     watchCode: "AJUy9Q3RGl8",
     type: "default",
     showAt: 145,
@@ -20,9 +26,10 @@ export const choiceGroupData: IChoiceGroup[] = [
       { text: "Helicopter", nextChoiceGroupWatchCode: "d19r9sPihGM" },
       { text: "Car", nextChoiceGroupWatchCode: "hu60fNlVmF0" },
     ],
+    coordinates: [xBase + xIncrement, yBase + yIncrement],
   },
   {
-    title: "Car",
+    videoTitle: "Car",
     watchCode: "hu60fNlVmF0",
     type: "default",
     showAt: 140,
@@ -30,9 +37,10 @@ export const choiceGroupData: IChoiceGroup[] = [
       { text: "Walk to Base", nextChoiceGroupWatchCode: "o33XENKcP8M" },
       { text: "Try to Fix", nextChoiceGroupWatchCode: "WOkGbGV2Tcg" },
     ],
+    coordinates: [xBase + xIncrement * 2, yBase - yIncrement / 2 + yIncrement],
   },
   {
-    title: "Walk to Base",
+    videoTitle: "Walk to Base",
     watchCode: "o33XENKcP8M",
     type: "default",
     showAt: 105,
@@ -40,9 +48,13 @@ export const choiceGroupData: IChoiceGroup[] = [
       { text: "Tell the Truth", nextChoiceGroupWatchCode: "Nv12neoLzBw" },
       { text: "I'm Fine!", nextChoiceGroupWatchCode: "n6EH5NhxUo4" },
     ],
+    coordinates: [
+      xBase + xIncrement * 3,
+      yBase + yIncrement - (yIncrement / 2) * 2,
+    ],
   },
   {
-    title: "I'm Fine!",
+    videoTitle: "I'm Fine!",
     watchCode: "n6EH5NhxUo4",
     type: "default",
     showAt: 150,
@@ -52,7 +64,7 @@ export const choiceGroupData: IChoiceGroup[] = [
     ],
   },
   {
-    title: "The Soldier",
+    videoTitle: "The Soldier",
     watchCode: "5za3hRrNVeg",
     type: "default",
     showAt: 139,
@@ -65,7 +77,7 @@ export const choiceGroupData: IChoiceGroup[] = [
     ],
   },
   {
-    title: "Ed's Hiding Something",
+    videoTitle: "Ed's Hiding Something",
     watchCode: "xtTTrN3oBIo",
     type: "default",
     showAt: 190,
@@ -75,7 +87,7 @@ export const choiceGroupData: IChoiceGroup[] = [
     ],
   },
   {
-    title: "Tuna",
+    videoTitle: "Tuna",
     watchCode: "PCjbswYDp88",
     type: "end",
     showAt: 70,
@@ -86,7 +98,7 @@ export const choiceGroupData: IChoiceGroup[] = [
     },
   },
   {
-    title: "PB&J",
+    videoTitle: "PB&J",
     watchCode: "tj-11NRY64o",
     type: "end",
     showAt: 68,
@@ -97,7 +109,7 @@ export const choiceGroupData: IChoiceGroup[] = [
     },
   },
   {
-    title: "I'm Hiding Something",
+    videoTitle: "I'm Hiding Something",
     watchCode: "Xe5GSBQcKmU",
     type: "end",
     showAt: 28,
@@ -108,7 +120,7 @@ export const choiceGroupData: IChoiceGroup[] = [
     },
   },
   {
-    title: "The Scientist",
+    videoTitle: "The Scientist",
     watchCode: "-kqxCWQKPYI",
     type: "default",
     showAt: 270,
@@ -118,7 +130,7 @@ export const choiceGroupData: IChoiceGroup[] = [
     ],
   },
   {
-    title: "For the Greater Good",
+    videoTitle: "For the Greater Good",
     watchCode: "N1xn5gXFch4",
     type: "end",
     showAt: 98,
@@ -129,7 +141,7 @@ export const choiceGroupData: IChoiceGroup[] = [
     },
   },
   {
-    title: "ABSOLUTELY NOT!!",
+    videoTitle: "ABSOLUTELY NOT!!",
     watchCode: "ex4vozijjdk",
     type: "end",
     showAt: 98,
@@ -140,7 +152,7 @@ export const choiceGroupData: IChoiceGroup[] = [
     },
   },
   {
-    title: "Tell the Truth",
+    videoTitle: "Tell the Truth",
     watchCode: "Nv12neoLzBw",
     type: "end",
     showAt: 108,
@@ -151,7 +163,7 @@ export const choiceGroupData: IChoiceGroup[] = [
     },
   },
   {
-    title: "Try to Fix",
+    videoTitle: "Try to Fix",
     watchCode: "WOkGbGV2Tcg",
     type: "default",
     showAt: 110,
@@ -165,9 +177,10 @@ export const choiceGroupData: IChoiceGroup[] = [
         nextChoiceGroupWatchCode: "M4HiiGiRKJE",
       },
     ],
+    coordinates: [xBase + xIncrement * 3, yBase + yIncrement],
   },
   {
-    title: "I Don't Trust Strangers",
+    videoTitle: "I Don't Trust Strangers",
     watchCode: "M4HiiGiRKJE",
     type: "end",
     showAt: 100,
@@ -178,7 +191,7 @@ export const choiceGroupData: IChoiceGroup[] = [
     },
   },
   {
-    title: "An Adventure Sounds Lovely",
+    videoTitle: "An Adventure Sounds Lovely",
     watchCode: "xrWThWmZINE",
     type: "default",
     showAt: 123,
@@ -194,7 +207,7 @@ export const choiceGroupData: IChoiceGroup[] = [
     ],
   },
   {
-    title: "Don't Give the Statue",
+    videoTitle: "Don't Give the Statue",
     watchCode: "Vy8hCbhZtvc",
     type: "end",
     showAt: 57,
@@ -205,7 +218,7 @@ export const choiceGroupData: IChoiceGroup[] = [
     },
   },
   {
-    title: "Give the Statue",
+    videoTitle: "Give the Statue",
     watchCode: "zelFSJm6yu8",
     type: "end",
     showAt: 170,
@@ -216,7 +229,7 @@ export const choiceGroupData: IChoiceGroup[] = [
     },
   },
   {
-    title: "Helicopter",
+    videoTitle: "Helicopter",
     watchCode: "d19r9sPihGM",
     showAt: 145,
     type: "default",
@@ -224,9 +237,10 @@ export const choiceGroupData: IChoiceGroup[] = [
       { text: "Charm the Guards", nextChoiceGroupWatchCode: "BYpxqtEfKpk" },
       { text: "Rally the Prisoners", nextChoiceGroupWatchCode: "Ttld8M6RmfI" },
     ],
+    coordinates: [xBase + xIncrement * 2, yBase + yIncrement / 2 + yIncrement],
   },
   {
-    title: "Rally the Prisoners",
+    videoTitle: "Rally the Prisoners",
     watchCode: "Ttld8M6RmfI",
     type: "default",
     showAt: 210,
@@ -234,9 +248,10 @@ export const choiceGroupData: IChoiceGroup[] = [
       { text: "Prison Life for Me", nextChoiceGroupWatchCode: "4WoRALUW_8g" },
       { text: "I Want to Be Free", nextChoiceGroupWatchCode: "SFbD8rM2S5c" },
     ],
+    coordinates: [xBase + xIncrement * 3, yBase + yIncrement * 2],
   },
   {
-    title: "I Want to Be Free",
+    videoTitle: "I Want to Be Free",
     watchCode: "SFbD8rM2S5c",
     type: "default",
     showAt: 125,
@@ -249,7 +264,7 @@ export const choiceGroupData: IChoiceGroup[] = [
     ],
   },
   {
-    title: "Thanks but No Thanks",
+    videoTitle: "Thanks but No Thanks",
     watchCode: "O6VB51PihWY",
     type: "end",
     showAt: 72,
@@ -260,7 +275,7 @@ export const choiceGroupData: IChoiceGroup[] = [
     },
   },
   {
-    title: "Thanks and also Yes Please",
+    videoTitle: "Thanks and also Yes Please",
     watchCode: "4Z4_t1LemOU",
     type: "end",
     showAt: 334,
@@ -271,7 +286,7 @@ export const choiceGroupData: IChoiceGroup[] = [
     },
   },
   {
-    title: "Prison Life for Me",
+    videoTitle: "Prison Life for Me",
     watchCode: "4WoRALUW_8g",
     type: "end",
     showAt: 73,
@@ -282,7 +297,7 @@ export const choiceGroupData: IChoiceGroup[] = [
     },
   },
   {
-    title: "Charm the Guards",
+    videoTitle: "Charm the Guards",
     watchCode: "BYpxqtEfKpk",
     type: "default",
     showAt: 250,
@@ -292,7 +307,7 @@ export const choiceGroupData: IChoiceGroup[] = [
     ],
   },
   {
-    title: "What's that?",
+    videoTitle: "What's that?",
     watchCode: "tu8qAfSv4pQ",
     type: "default",
     showAt: 45,
@@ -302,7 +317,7 @@ export const choiceGroupData: IChoiceGroup[] = [
     ],
   },
   {
-    title: "Oh HELL No!",
+    videoTitle: "Oh HELL No!",
     watchCode: "cn4G5KQQFHw",
     type: "default",
     showAt: 115,
@@ -312,7 +327,7 @@ export const choiceGroupData: IChoiceGroup[] = [
     ],
   },
   {
-    title: "Stick to the Plan",
+    videoTitle: "Stick to the Plan",
     watchCode: "AS-mcpFmyMY",
     type: "default",
     showAt: 195,
@@ -322,7 +337,7 @@ export const choiceGroupData: IChoiceGroup[] = [
     ],
   },
   {
-    title: "Open the Box",
+    videoTitle: "Open the Box",
     watchCode: "9n7Via0ect4",
     type: "end",
     showAt: 194,
@@ -333,7 +348,7 @@ export const choiceGroupData: IChoiceGroup[] = [
     },
   },
   {
-    title: "Shoot Wade",
+    videoTitle: "Shoot Wade",
     watchCode: "XEdgaWtjEqg",
     type: "end",
     showAt: 55,
@@ -344,7 +359,7 @@ export const choiceGroupData: IChoiceGroup[] = [
     },
   },
   {
-    title: "What's in the Box?",
+    videoTitle: "What's in the Box?",
     watchCode: "_EjgHql3mJ0",
     type: "end",
     showAt: 88,
@@ -355,7 +370,7 @@ export const choiceGroupData: IChoiceGroup[] = [
     },
   },
   {
-    title: "This Seems Safe",
+    videoTitle: "This Seems Safe",
     watchCode: "lSJT6ch3-GQ",
     type: "end",
     showAt: 55,
@@ -366,7 +381,7 @@ export const choiceGroupData: IChoiceGroup[] = [
     },
   },
   {
-    title: "Dig Dig Dig",
+    videoTitle: "Dig Dig Dig",
     watchCode: "6HtWfuz1wEA",
     type: "default",
     showAt: 97,
@@ -376,7 +391,7 @@ export const choiceGroupData: IChoiceGroup[] = [
     ],
   },
   {
-    title: "What's in the Box?",
+    videoTitle: "What's in the Box?",
     watchCode: "xuukkVAJ5wk",
     type: "end",
     showAt: 80,
@@ -387,7 +402,7 @@ export const choiceGroupData: IChoiceGroup[] = [
     },
   },
   {
-    title: "Stick to the Plan",
+    videoTitle: "Stick to the Plan",
     watchCode: "6NdgRVlAmAo",
     type: "default",
     showAt: 225,
@@ -397,7 +412,7 @@ export const choiceGroupData: IChoiceGroup[] = [
     ],
   },
   {
-    title: "Open the Box",
+    videoTitle: "Open the Box",
     watchCode: "cI_hzj5g-aQ",
     type: "end",
     showAt: 77,
@@ -408,7 +423,7 @@ export const choiceGroupData: IChoiceGroup[] = [
     },
   },
   {
-    title: "Shoot Bob",
+    videoTitle: "Shoot Bob",
     watchCode: "kKIm9otZZBg",
     type: "end",
     showAt: 59,
@@ -419,7 +434,7 @@ export const choiceGroupData: IChoiceGroup[] = [
     },
   },
   {
-    title: "All Sneaky Like",
+    videoTitle: "All Sneaky Like",
     watchCode: "dHEAIpQDPdA",
     type: "default",
     showAt: 3 * 60 + 37,
@@ -427,9 +442,10 @@ export const choiceGroupData: IChoiceGroup[] = [
       { text: "Dark Tunnel", nextChoiceGroupWatchCode: "g16M54TNU8o" },
       { text: "Light Tunnel", nextChoiceGroupWatchCode: "aPIHjZ7ik2U" },
     ],
+    coordinates: [xBase + xIncrement, yBase - yIncrement],
   },
   {
-    title: "Light Tunnel",
+    videoTitle: "Light Tunnel",
     watchCode: "aPIHjZ7ik2U",
     type: "default",
     showAt: 105,
@@ -437,9 +453,10 @@ export const choiceGroupData: IChoiceGroup[] = [
       { text: "Wait For Rescue", nextChoiceGroupWatchCode: "MIV53FtqA1A" },
       { text: "Row Home", nextChoiceGroupWatchCode: "QUbuL0VN01o" },
     ],
+    coordinates: [xBase + xIncrement * 2, yBase - yIncrement],
   },
   {
-    title: "Row Home",
+    videoTitle: "Row Home",
     watchCode: "QUbuL0VN01o",
     type: "default",
     showAt: 105,
@@ -447,9 +464,10 @@ export const choiceGroupData: IChoiceGroup[] = [
       { text: "Build a Sign", nextChoiceGroupWatchCode: "UPzKET34slc" },
       { text: "Find Shelter", nextChoiceGroupWatchCode: "h-k59Ci_smg" },
     ],
+    coordinates: [xBase + xIncrement * 3, yBase - yIncrement],
   },
   {
-    title: "Find Shelter",
+    videoTitle: "Find Shelter",
     watchCode: "h-k59Ci_smg",
     type: "default",
     showAt: 120,
@@ -457,9 +475,10 @@ export const choiceGroupData: IChoiceGroup[] = [
       { text: "Enter the Cave", nextChoiceGroupWatchCode: "NrrnXtw23gI" },
       { text: "RUN AWAY!!", nextChoiceGroupWatchCode: "-EBnnTYEB80" },
     ],
+    coordinates: [xBase + xIncrement * 4, yBase - yIncrement],
   },
   {
-    title: "RUN AWAY!!",
+    videoTitle: "RUN AWAY!!",
     watchCode: "-EBnnTYEB80",
     type: "end",
     showAt: 27,
@@ -468,9 +487,10 @@ export const choiceGroupData: IChoiceGroup[] = [
       endingCode: "A",
       endingName: "Fresh meat",
     },
+    coordinates: [xBase + xIncrement * 5, yBase - yIncrement],
   },
   {
-    title: "Enter the Cave",
+    videoTitle: "Enter the Cave",
     watchCode: "NrrnXtw23gI",
     type: "default",
     showAt: 102,
@@ -478,9 +498,10 @@ export const choiceGroupData: IChoiceGroup[] = [
       { text: "You First", nextChoiceGroupWatchCode: "BXjHW86e4pc" },
       { text: "Me First", nextChoiceGroupWatchCode: "ojpitvj0aTg" },
     ],
+    coordinates: [xBase + xIncrement * 5, yBase - yIncrement * 2],
   },
   {
-    title: "Me First",
+    videoTitle: "Me First",
     watchCode: "ojpitvj0aTg",
     type: "end",
     showAt: 146,
@@ -489,9 +510,10 @@ export const choiceGroupData: IChoiceGroup[] = [
       endingCode: "8",
       endingName: "Don't judge a book by its human-skin cover",
     },
+    coordinates: [xBase + xIncrement * 6, yBase - yIncrement * 2],
   },
   {
-    title: "You First",
+    videoTitle: "You First",
     watchCode: "BXjHW86e4pc",
     type: "end",
     showAt: 96,
@@ -500,9 +522,10 @@ export const choiceGroupData: IChoiceGroup[] = [
       endingCode: "J",
       endingName: "Imma firin' mah lazarrr!",
     },
+    coordinates: [xBase + xIncrement * 6, yBase - yIncrement * 3],
   },
   {
-    title: "Build a Sign",
+    videoTitle: "Build a Sign",
     watchCode: "UPzKET34slc",
     type: "end",
     showAt: 154,
@@ -511,9 +534,10 @@ export const choiceGroupData: IChoiceGroup[] = [
       endingCode: "H",
       endingName: "Not again...",
     },
+    coordinates: [xBase + xIncrement * 4, yBase - yIncrement * 2],
   },
   {
-    title: "Wait For Rescue",
+    videoTitle: "Wait For Rescue",
     watchCode: "MIV53FtqA1A",
     type: "default",
     showAt: 90,
@@ -521,9 +545,10 @@ export const choiceGroupData: IChoiceGroup[] = [
       { text: "I Know Everything", nextChoiceGroupWatchCode: "ipGDwQDXcD0" },
       { text: "I Know Nothing", nextChoiceGroupWatchCode: "hYCiv0hvhcM" },
     ],
+    coordinates: [xBase + xIncrement * 3, yBase - yIncrement * 3],
   },
   {
-    title: "I Know Nothing",
+    videoTitle: "I Know Nothing",
     watchCode: "hYCiv0hvhcM",
     type: "default",
     showAt: 157,
@@ -531,9 +556,10 @@ export const choiceGroupData: IChoiceGroup[] = [
       { text: "Treasured Gold", nextChoiceGroupWatchCode: "znKK8QMshHg" },
       { text: "Golden Treasure", nextChoiceGroupWatchCode: "VdwBhv69R54" },
     ],
+    coordinates: [xBase + xIncrement * 4, yBase - yIncrement * 3],
   },
   {
-    title: "Treasured Gold",
+    videoTitle: "Treasured Gold",
     watchCode: "znKK8QMshHg",
     type: "end",
     showAt: 198,
@@ -542,9 +568,10 @@ export const choiceGroupData: IChoiceGroup[] = [
       endingCode: "i",
       endingName: "A pirate's life for me",
     },
+    coordinates: [xBase + xIncrement * 5, yBase - yIncrement * 4],
   },
   {
-    title: "Golden Treasure",
+    videoTitle: "Golden Treasure",
     watchCode: "VdwBhv69R54",
     type: "end",
     showAt: 159,
@@ -553,9 +580,10 @@ export const choiceGroupData: IChoiceGroup[] = [
       endingCode: "v",
       endingName: "In the soulstone",
     },
+    coordinates: [xBase + xIncrement * 5, yBase - yIncrement * 3],
   },
   {
-    title: "I Know Everything",
+    videoTitle: "I Know Everything",
     watchCode: "ipGDwQDXcD0",
     type: "end",
     showAt: 39,
@@ -566,7 +594,7 @@ export const choiceGroupData: IChoiceGroup[] = [
     },
   },
   {
-    title: "Dark Tunnel",
+    videoTitle: "Dark Tunnel",
     watchCode: "g16M54TNU8o",
     type: "default",
     showAt: 40,
@@ -574,9 +602,10 @@ export const choiceGroupData: IChoiceGroup[] = [
       { text: "Split Up", nextChoiceGroupWatchCode: "4YoY5OOyn6k" },
       { text: "Don't Split Up", nextChoiceGroupWatchCode: "PSxr_Q1yNvE" },
     ],
+    coordinates: [xIncrement * 2, 250 - 70 * 3],
   },
   {
-    title: "Split Up",
+    videoTitle: "Split Up",
     watchCode: "4YoY5OOyn6k",
     type: "end",
     showAt: 25,
@@ -587,7 +616,7 @@ export const choiceGroupData: IChoiceGroup[] = [
     },
   },
   {
-    title: "Don't Split Up",
+    videoTitle: "Don't Split Up",
     watchCode: "PSxr_Q1yNvE",
     type: "default",
     showAt: 60,
@@ -597,7 +626,7 @@ export const choiceGroupData: IChoiceGroup[] = [
     ],
   },
   {
-    title: "Split Up",
+    videoTitle: "Split Up",
     watchCode: "WLDw07ew24g",
     type: "end",
     showAt: 34,
@@ -608,7 +637,7 @@ export const choiceGroupData: IChoiceGroup[] = [
     },
   },
   {
-    title: "Don't Split Up",
+    videoTitle: "Don't Split Up",
     watchCode: "Skmtr32TyjA",
     type: "default",
     showAt: 187,
@@ -618,7 +647,7 @@ export const choiceGroupData: IChoiceGroup[] = [
     ],
   },
   {
-    title: "Split Up",
+    videoTitle: "Split Up",
     watchCode: "jH_OAoT-icU",
     type: "end",
     showAt: 230,
@@ -629,7 +658,7 @@ export const choiceGroupData: IChoiceGroup[] = [
     },
   },
   {
-    title: "Don't Split Up",
+    videoTitle: "Don't Split Up",
     watchCode: "POf2YIskmn4",
     type: "default",
     showAt: 55,
@@ -639,7 +668,7 @@ export const choiceGroupData: IChoiceGroup[] = [
     ],
   },
   {
-    title: "Split Up",
+    videoTitle: "Split Up",
     watchCode: "rJQdUfNcLt4",
     type: "end",
     showAt: 74,
@@ -650,7 +679,7 @@ export const choiceGroupData: IChoiceGroup[] = [
     },
   },
   {
-    title: "Split Up",
+    videoTitle: "Split Up",
     watchCode: "55wOk9zdwXM",
     type: "end",
     showAt: 138,

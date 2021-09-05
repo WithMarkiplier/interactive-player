@@ -21,6 +21,8 @@ export interface IAppContextVals {
   setEndings: (endings: number[]) => void;
   choiceBarVisible: boolean;
   setChoiceBarVisible: (choiceBarVisible: boolean) => void;
+  currentCG: IChoiceGroup;
+  setCurrentCG: (currentCG: IChoiceGroup) => void;
 }
 
 export const defaults: IAppContextVals = {
@@ -35,6 +37,8 @@ export const defaults: IAppContextVals = {
   setEndings: null,
   choiceBarVisible: false,
   setChoiceBarVisible: null,
+  currentCG: choiceGroupData.find((x) => x.type === "start"),
+  setCurrentCG: null,
 };
 
 export const AppContext = createContext<IAppContextVals>(defaults);
@@ -45,8 +49,8 @@ const AppContextProvider: React.FC<{} | IAppContextVals> = ({ children }) => {
   const [currentTime, setCurrentTime] = useState(defaults.currentTime);
   const playerRef = useRef(defaults.playerRef);
   const [choiceBarVisible, setChoiceBarVisible] = useState(false);
-
   const [endings, setEndings] = useState<number[]>([]);
+  const [currentCG, setCurrentCG] = useState(defaults.currentCG);
 
   useEffect(() => {
     if (window) {
@@ -88,6 +92,8 @@ const AppContextProvider: React.FC<{} | IAppContextVals> = ({ children }) => {
         setEndings,
         choiceBarVisible,
         setChoiceBarVisible,
+        currentCG,
+        setCurrentCG,
       }}
     >
       {children}

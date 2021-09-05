@@ -1,13 +1,24 @@
 import Paper from "@material-ui/core/Paper";
 import Head from "next/head";
-import React from "react";
+import React, { useEffect } from "react";
 import { Controls } from "../components/controls";
 import { Endings } from "../components/endings";
 import { Layout } from "../components/layout";
 import { MetaHead } from "../components/meta-head";
 import Player from "../components/player/player";
+import ReactGA from "react-ga";
+import { WalkthroughDiagram } from "../components/diagram";
 
 const Page: React.FC = () => {
+  useEffect(() => {
+    try {
+      ReactGA.initialize("UA-206767304-1");
+      ReactGA.pageview("/");
+    } catch (e) {
+      console.log(e);
+    }
+  }, []);
+
   return (
     <Layout>
       <MetaHead
@@ -21,6 +32,9 @@ const Page: React.FC = () => {
         <div className="d-flex flex-column">
           <Player />
           <Controls />
+          <Paper className="py-4 my-2">
+            <WalkthroughDiagram />
+          </Paper>
           <Paper className="py-4 my-2">
             <Endings />
           </Paper>

@@ -6,6 +6,7 @@ import { useAppContext } from "../../src/hooks";
 import Portal from "@material-ui/core/Portal";
 import { ChoiceBar } from "../choice-bar";
 import { ChoiceHistory } from "../choice-history";
+import ReactGA from "react-ga";
 
 const Player: React.FC = () => {
   const {
@@ -42,20 +43,25 @@ const Player: React.FC = () => {
       (showAt ? currentTime > showAt : currentTime > player?.duration - 30) &&
       type === "end"
     ) {
-      const e = [
-        ...endings.filter((x) => x !== cg.ending.endingNumber),
-        cg.ending.endingNumber,
-      ].sort((a, b) => a - b);
-      console.log("New endings", e);
-      setEndings(e);
-    }
+      if (!endings.includes(cg.ending.endingNumber)) {
+        const e = [
+          ...endings.filter((x) => x !== cg.ending.endingNumber),
+          cg.ending.endingNumber,
+        ].sort((a, b) => a - b);
+        setEndings(e);
 
-    console.log(
-      currentTime,
-      showAt,
-      type,
-      endings.find((x) => x === cg.ending?.endingNumber)
-    );
+        try {
+          ReactGA.event({
+            category: "ending",
+            action: "Achieved ending",
+            value: cg.ending.endingNumber,
+            label: `Ending #${cg.ending.endingNumber} - ${cg.ending.endingName}`,
+          });
+        } catch (e) {
+          console.log(e);
+        }
+      }
+    }
   }, [currentTime]);
 
   const handleTimeChange = (event: Plyr.PlyrEvent) => {
@@ -63,6 +69,8 @@ const Player: React.FC = () => {
     if (currentTime === ct) return;
     setCurrentTime(ct);
   };
+
+  const handleVideoEnd = (event: Plyr.PlyrEvent) => {};
 
   useEffect(() => {
     if (!player) {
@@ -81,8 +89,10 @@ const Player: React.FC = () => {
 
   const rebind = () => {
     player.off("timeupdate", handleTimeChange);
+    player.off("ended", handleVideoEnd);
+
     player.on("timeupdate", handleTimeChange);
-    console.log("rebinding events");
+    player.on("ended", handleVideoEnd);
   };
 
   const doubleClickHanlder = (event) => {
@@ -116,6 +126,7 @@ const Player: React.FC = () => {
     };
 
     p.on("timeupdate", handleTimeChange);
+    p.on("ended", handleVideoEnd);
     setPlayer(p);
 
     const playerContainer = document.getElementsByClassName("plyr")[0];
@@ -146,7 +157,7 @@ const Player: React.FC = () => {
 
   return (
     <Paper className={styles.player} onDoubleClick={doubleClickHanlder}>
-      <video id="player" ref={playerRef} autoPlay />
+      <video id="player" ref={playerRef} autoPlay={false} />
       <Portal container={choiceBarContainer}>
         <ChoiceBar />
       </Portal>

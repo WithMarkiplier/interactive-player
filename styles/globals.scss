@@ -57,3 +57,27 @@ body {
   align-self: center;
   grid-area: endingNumber;
 }
+
+.bi-diagram {
+  overflow: auto !important;
+}
+
+.diagram-end {
+  background: linear-gradient(
+    rgba(0, 0, 0, 0.7),
+    rgba(0, 0, 0, 0.7)
+  ) !important;
+  color: #ffffff !important;
+}
+
+.diagram-start {
+  background: linear-gradient(
+    rgba(53, 122, 56, 0.7),
+    rgba(53, 122, 56, 0.7)
+  ) !important;
+  color: #ffffff !important;
+}
+
+.bi.bi-diagram .bi-link-canvas-layer .bi-diagram-link:hover .bi-link-path {
+  stroke: #{$primary} !important;
+}

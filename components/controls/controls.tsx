@@ -24,7 +24,7 @@ const Controls: React.FC = () => {
 
     const src: Plyr.SourceInfo = {
       type: "video",
-      title: first.title,
+      title: first.videoTitle,
       sources: [
         {
           src: `https://www.youtube.com/watch?v=${first.watchCode}`,

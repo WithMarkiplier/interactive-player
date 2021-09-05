@@ -26,7 +26,7 @@ const ChoiceHistory: React.FC = () => {
             height={140.63}
             alt={x.watchCode}
           />
-          <Typography variant="h6">{x.title}</Typography>
+          <Typography variant="h6">{x.videoTitle}</Typography>
         </div>
       ))}
     </div>
