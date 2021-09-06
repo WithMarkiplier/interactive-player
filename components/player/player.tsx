@@ -7,12 +7,14 @@ import Portal from "@material-ui/core/Portal";
 import { ChoiceBar } from "../choice-bar";
 import { ChoiceHistory } from "../choice-history";
 import ReactGA from "react-ga";
+import toast from "react-hot-toast";
 
 const Player: React.FC = () => {
   const {
     player,
     setPlayer,
     choices: cgs,
+    currentCG,
     playerRef,
     choiceBarVisible,
     setChoiceBarVisible,
@@ -20,7 +22,7 @@ const Player: React.FC = () => {
     setEndings,
   } = useAppContext();
 
-  const cg = cgs.reverse()[0];
+  const cg = currentCG;
   const { showAt, type } = cg;
 
   const [choiceBarContainer, setChoiceBarContainer] = useState(null);
@@ -49,6 +51,9 @@ const Player: React.FC = () => {
           cg.ending.endingNumber,
         ].sort((a, b) => a - b);
         setEndings(e);
+
+        toast(`New ending discovered!`);
+        toast(`#${cg.ending.endingNumber} - ${cg.ending.endingName}`);
 
         try {
           ReactGA.event({
@@ -111,9 +116,12 @@ const Player: React.FC = () => {
         "mute",
         "volume",
         "captions",
+        "settings",
         "fullscreen",
       ],
+      // captions: { active: true, language: "auto" },
     });
+
     p.source = {
       type: "video",
       title: "A heist with Markiplier",
@@ -123,7 +131,18 @@ const Player: React.FC = () => {
           provider: "youtube",
         },
       ],
+      // tracks: [
+      //   {
+      //     kind: "subtitles",
+      //     src: "/subtitles/9TjfkXmwbTs.eng.vtt",
+      //     srcLang: "en",
+      //     label: "English",
+      //     default: true,
+      //   },
+      // ],
     };
+
+    // p.language = "auto";
 
     p.on("timeupdate", handleTimeChange);
     p.on("ended", handleVideoEnd);

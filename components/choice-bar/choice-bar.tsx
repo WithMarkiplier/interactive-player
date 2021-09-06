@@ -12,11 +12,8 @@ const ChoiceBar: React.FC = () => {
   const {
     choices: cgs,
     setChoices,
-    currentTime,
     player,
     playerRef,
-    endings,
-    setEndings,
     currentCG,
     setCurrentCG,
     choiceBarVisible,

@@ -8,6 +8,7 @@ import {
 import Plyr from "plyr";
 import { IChoiceGroup } from "../../src/types/types";
 import { choiceGroupData } from "../../src/data/data";
+import toast from "react-hot-toast";
 
 export interface IAppContextVals {
   player: Plyr;
@@ -88,6 +89,15 @@ const AppContextProvider: React.FC<{} | IAppContextVals> = ({ children }) => {
 
   useEffect(() => {
     if (window) {
+      try {
+        window.localStorage.setItem("ls-test", "success");
+        window.localStorage.removeItem("ls-test");
+      } catch (e) {
+        toast.error(
+          "Could not access Local Storage! Your progress will not be saved."
+        );
+      }
+
       const storedEndings = window.localStorage.getItem("endings");
 
       if (storedEndings) {

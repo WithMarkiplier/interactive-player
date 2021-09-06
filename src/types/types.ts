@@ -6,6 +6,7 @@ export interface IChoiceGroup {
   choices?: IChoice[];
   type: ChoiceGroupType;
   ending?: IEnding;
+  subtitles?: string[];
 }
 
 export interface IEnding {

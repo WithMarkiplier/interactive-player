@@ -46,6 +46,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
           crossOrigin="anonymous"
         ></link>
+        <meta name="author" content="koudy008" />
       </Head>
       <AContext.Provider>
         <Toaster
