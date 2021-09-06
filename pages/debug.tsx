@@ -7,7 +7,6 @@ import { MetaHead } from "../components/meta-head";
 import Player from "../components/player/player";
 import ReactGA from "react-ga";
 import DiagramDynamic from "../components/diagram/dynamic";
-import Typography from "@material-ui/core/Typography";
 
 const Page: React.FC = () => {
   useEffect(() => {
@@ -32,18 +31,9 @@ const Page: React.FC = () => {
         <div className="d-flex flex-column">
           <Player />
           <Controls />
-          <Paper className="my-2 p-2 pt-4">
-            <Typography className="text-center" variant="h5">
-              Your walkthrough
-            </Typography>
-            <DiagramDynamic />
+          <Paper className="py-4 my-2">
+            <DiagramDynamic onlyUnlocked={false} />
           </Paper>
-          {/* <Paper className="py-4 my-2">
-            <Endings />
-          </Paper> */}
-          {/* <Paper className="py-4">
-            <ChoiceHistory />
-          </Paper> */}
         </div>
       </div>
     </Layout>

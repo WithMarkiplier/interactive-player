@@ -6,7 +6,6 @@ export interface IChoiceGroup {
   choices?: IChoice[];
   type: ChoiceGroupType;
   ending?: IEnding;
-  coordinates?: Coordinates;
 }
 
 export interface IEnding {
@@ -21,5 +20,3 @@ export interface IChoice {
   text: string;
   nextChoiceGroupWatchCode: string;
 }
-
-export type Coordinates = [number, number];

@@ -23,6 +23,8 @@ export interface IAppContextVals {
   setChoiceBarVisible: (choiceBarVisible: boolean) => void;
   currentCG: IChoiceGroup;
   setCurrentCG: (currentCG: IChoiceGroup) => void;
+  walkthrough: string[];
+  setWalkthrough: (walkthrough: string[]) => void;
 }
 
 export const defaults: IAppContextVals = {
@@ -39,6 +41,8 @@ export const defaults: IAppContextVals = {
   setChoiceBarVisible: null,
   currentCG: choiceGroupData.find((x) => x.type === "start"),
   setCurrentCG: null,
+  walkthrough: [choiceGroupData.find((x) => x.type === "start").watchCode],
+  setWalkthrough: null,
 };
 
 export const AppContext = createContext<IAppContextVals>(defaults);
@@ -50,6 +54,9 @@ const AppContextProvider: React.FC<{} | IAppContextVals> = ({ children }) => {
   const playerRef = useRef(defaults.playerRef);
   const [choiceBarVisible, setChoiceBarVisible] = useState(false);
   const [endings, setEndings] = useState<number[]>([]);
+  const [walkthrough, setWalkthrough] = useState<string[]>(
+    defaults.walkthrough
+  );
   const [currentCG, setCurrentCG] = useState(defaults.currentCG);
 
   useEffect(() => {
@@ -66,6 +73,21 @@ const AppContextProvider: React.FC<{} | IAppContextVals> = ({ children }) => {
 
   useEffect(() => {
     if (window) {
+      if (walkthrough.length > 1) {
+        try {
+          window.localStorage.setItem(
+            "walkthrough",
+            JSON.stringify(walkthrough)
+          );
+        } catch (e) {
+          console.log(e);
+        }
+      }
+    }
+  }, [walkthrough]);
+
+  useEffect(() => {
+    if (window) {
       const storedEndings = window.localStorage.getItem("endings");
 
       if (storedEndings) {
@@ -74,6 +96,16 @@ const AppContextProvider: React.FC<{} | IAppContextVals> = ({ children }) => {
         if (!eIds) return;
 
         setEndings(eIds);
+      }
+
+      const storedWalkthrough = window.localStorage.getItem("walkthrough");
+
+      if (storedWalkthrough) {
+        const wIds = JSON.parse(storedWalkthrough) as string[];
+
+        if (!wIds) return;
+
+        setWalkthrough(wIds);
       }
     }
   }, []);
@@ -94,6 +126,8 @@ const AppContextProvider: React.FC<{} | IAppContextVals> = ({ children }) => {
         setChoiceBarVisible,
         currentCG,
         setCurrentCG,
+        walkthrough,
+        setWalkthrough,
       }}
     >
       {children}

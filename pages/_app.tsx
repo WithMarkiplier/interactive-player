@@ -6,11 +6,12 @@ import { AContext } from "../components/context/app-context";
 import { theme } from "../components/theme/theme";
 import "../styles/globals.scss";
 import "../styles/plyr.css";
-import ReactGA from "react-ga";
+import "../styles/diagram.scss";
 import type { AppProps, NextWebVitalsMetric } from "next/app";
 import "beautiful-react-diagrams/styles.css";
+import { Toaster } from "react-hot-toast";
 
-export function reportWebVitals(metric: NextWebVitalsMetric) {
+export const reportWebVitals = (metric: NextWebVitalsMetric) => {
   const { id, name, label, value } = metric;
   // Use `window.gtag` if you initialized Google Analytics as this example:
   // https://github.com/vercel/next.js/blob/canary/examples/with-google-analytics/pages/_document.js
@@ -23,7 +24,7 @@ export function reportWebVitals(metric: NextWebVitalsMetric) {
     event_label: id, // id unique to current page load
     non_interaction: true, // avoids affecting bounce rate.
   });
-}
+};
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   useEffect(() => {
@@ -48,6 +49,15 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
         ></link>
       </Head>
       <AContext.Provider>
+        <Toaster
+          position="bottom-left"
+          toastOptions={{
+            style: {
+              background: "#363636",
+              color: "#fff",
+            },
+          }}
+        />
         <ThemeProvider theme={theme}>
           <Component {...pageProps} />
         </ThemeProvider>

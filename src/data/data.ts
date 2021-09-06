@@ -1,10 +1,5 @@
 import { IChoiceGroup } from "../types/types";
 
-const xIncrement = 200;
-const yIncrement = 75;
-const yBase = 300;
-const xBase = 0;
-
 export const choiceGroupData: IChoiceGroup[] = [
   {
     videoTitle: "A Heist with Markiplier",
@@ -15,7 +10,6 @@ export const choiceGroupData: IChoiceGroup[] = [
       { text: "All Sneaky like", nextChoiceGroupWatchCode: "dHEAIpQDPdA" },
       { text: "Guns Blazing", nextChoiceGroupWatchCode: "AJUy9Q3RGl8" },
     ],
-    coordinates: [xBase, yBase],
   },
   {
     videoTitle: "Guns Blazing",
@@ -26,7 +20,6 @@ export const choiceGroupData: IChoiceGroup[] = [
       { text: "Helicopter", nextChoiceGroupWatchCode: "d19r9sPihGM" },
       { text: "Car", nextChoiceGroupWatchCode: "hu60fNlVmF0" },
     ],
-    coordinates: [xBase + xIncrement, yBase + yIncrement],
   },
   {
     videoTitle: "Car",
@@ -37,7 +30,6 @@ export const choiceGroupData: IChoiceGroup[] = [
       { text: "Walk to Base", nextChoiceGroupWatchCode: "o33XENKcP8M" },
       { text: "Try to Fix", nextChoiceGroupWatchCode: "WOkGbGV2Tcg" },
     ],
-    coordinates: [xBase + xIncrement * 2, yBase - yIncrement / 2 + yIncrement],
   },
   {
     videoTitle: "Walk to Base",
@@ -47,10 +39,6 @@ export const choiceGroupData: IChoiceGroup[] = [
     choices: [
       { text: "Tell the Truth", nextChoiceGroupWatchCode: "Nv12neoLzBw" },
       { text: "I'm Fine!", nextChoiceGroupWatchCode: "n6EH5NhxUo4" },
-    ],
-    coordinates: [
-      xBase + xIncrement * 3,
-      yBase + yIncrement - (yIncrement / 2) * 2,
     ],
   },
   {
@@ -177,7 +165,6 @@ export const choiceGroupData: IChoiceGroup[] = [
         nextChoiceGroupWatchCode: "M4HiiGiRKJE",
       },
     ],
-    coordinates: [xBase + xIncrement * 3, yBase + yIncrement],
   },
   {
     videoTitle: "I Don't Trust Strangers",
@@ -237,7 +224,6 @@ export const choiceGroupData: IChoiceGroup[] = [
       { text: "Charm the Guards", nextChoiceGroupWatchCode: "BYpxqtEfKpk" },
       { text: "Rally the Prisoners", nextChoiceGroupWatchCode: "Ttld8M6RmfI" },
     ],
-    coordinates: [xBase + xIncrement * 2, yBase + yIncrement / 2 + yIncrement],
   },
   {
     videoTitle: "Rally the Prisoners",
@@ -248,7 +234,6 @@ export const choiceGroupData: IChoiceGroup[] = [
       { text: "Prison Life for Me", nextChoiceGroupWatchCode: "4WoRALUW_8g" },
       { text: "I Want to Be Free", nextChoiceGroupWatchCode: "SFbD8rM2S5c" },
     ],
-    coordinates: [xBase + xIncrement * 3, yBase + yIncrement * 2],
   },
   {
     videoTitle: "I Want to Be Free",
@@ -442,7 +427,6 @@ export const choiceGroupData: IChoiceGroup[] = [
       { text: "Dark Tunnel", nextChoiceGroupWatchCode: "g16M54TNU8o" },
       { text: "Light Tunnel", nextChoiceGroupWatchCode: "aPIHjZ7ik2U" },
     ],
-    coordinates: [xBase + xIncrement, yBase - yIncrement],
   },
   {
     videoTitle: "Light Tunnel",
@@ -453,7 +437,6 @@ export const choiceGroupData: IChoiceGroup[] = [
       { text: "Wait For Rescue", nextChoiceGroupWatchCode: "MIV53FtqA1A" },
       { text: "Row Home", nextChoiceGroupWatchCode: "QUbuL0VN01o" },
     ],
-    coordinates: [xBase + xIncrement * 2, yBase - yIncrement],
   },
   {
     videoTitle: "Row Home",
@@ -464,7 +447,6 @@ export const choiceGroupData: IChoiceGroup[] = [
       { text: "Build a Sign", nextChoiceGroupWatchCode: "UPzKET34slc" },
       { text: "Find Shelter", nextChoiceGroupWatchCode: "h-k59Ci_smg" },
     ],
-    coordinates: [xBase + xIncrement * 3, yBase - yIncrement],
   },
   {
     videoTitle: "Find Shelter",
@@ -475,7 +457,6 @@ export const choiceGroupData: IChoiceGroup[] = [
       { text: "Enter the Cave", nextChoiceGroupWatchCode: "NrrnXtw23gI" },
       { text: "RUN AWAY!!", nextChoiceGroupWatchCode: "-EBnnTYEB80" },
     ],
-    coordinates: [xBase + xIncrement * 4, yBase - yIncrement],
   },
   {
     videoTitle: "RUN AWAY!!",
@@ -487,7 +468,6 @@ export const choiceGroupData: IChoiceGroup[] = [
       endingCode: "A",
       endingName: "Fresh meat",
     },
-    coordinates: [xBase + xIncrement * 5, yBase - yIncrement],
   },
   {
     videoTitle: "Enter the Cave",
@@ -498,7 +478,6 @@ export const choiceGroupData: IChoiceGroup[] = [
       { text: "You First", nextChoiceGroupWatchCode: "BXjHW86e4pc" },
       { text: "Me First", nextChoiceGroupWatchCode: "ojpitvj0aTg" },
     ],
-    coordinates: [xBase + xIncrement * 5, yBase - yIncrement * 2],
   },
   {
     videoTitle: "Me First",
@@ -510,7 +489,6 @@ export const choiceGroupData: IChoiceGroup[] = [
       endingCode: "8",
       endingName: "Don't judge a book by its human-skin cover",
     },
-    coordinates: [xBase + xIncrement * 6, yBase - yIncrement * 2],
   },
   {
     videoTitle: "You First",
@@ -522,7 +500,6 @@ export const choiceGroupData: IChoiceGroup[] = [
       endingCode: "J",
       endingName: "Imma firin' mah lazarrr!",
     },
-    coordinates: [xBase + xIncrement * 6, yBase - yIncrement * 3],
   },
   {
     videoTitle: "Build a Sign",
@@ -534,7 +511,6 @@ export const choiceGroupData: IChoiceGroup[] = [
       endingCode: "H",
       endingName: "Not again...",
     },
-    coordinates: [xBase + xIncrement * 4, yBase - yIncrement * 2],
   },
   {
     videoTitle: "Wait For Rescue",
@@ -545,7 +521,6 @@ export const choiceGroupData: IChoiceGroup[] = [
       { text: "I Know Everything", nextChoiceGroupWatchCode: "ipGDwQDXcD0" },
       { text: "I Know Nothing", nextChoiceGroupWatchCode: "hYCiv0hvhcM" },
     ],
-    coordinates: [xBase + xIncrement * 3, yBase - yIncrement * 3],
   },
   {
     videoTitle: "I Know Nothing",
@@ -556,7 +531,6 @@ export const choiceGroupData: IChoiceGroup[] = [
       { text: "Treasured Gold", nextChoiceGroupWatchCode: "znKK8QMshHg" },
       { text: "Golden Treasure", nextChoiceGroupWatchCode: "VdwBhv69R54" },
     ],
-    coordinates: [xBase + xIncrement * 4, yBase - yIncrement * 3],
   },
   {
     videoTitle: "Treasured Gold",
@@ -568,7 +542,6 @@ export const choiceGroupData: IChoiceGroup[] = [
       endingCode: "i",
       endingName: "A pirate's life for me",
     },
-    coordinates: [xBase + xIncrement * 5, yBase - yIncrement * 4],
   },
   {
     videoTitle: "Golden Treasure",
@@ -580,7 +553,6 @@ export const choiceGroupData: IChoiceGroup[] = [
       endingCode: "v",
       endingName: "In the soulstone",
     },
-    coordinates: [xBase + xIncrement * 5, yBase - yIncrement * 3],
   },
   {
     videoTitle: "I Know Everything",
@@ -602,7 +574,6 @@ export const choiceGroupData: IChoiceGroup[] = [
       { text: "Split Up", nextChoiceGroupWatchCode: "4YoY5OOyn6k" },
       { text: "Don't Split Up", nextChoiceGroupWatchCode: "PSxr_Q1yNvE" },
     ],
-    coordinates: [xIncrement * 2, 250 - 70 * 3],
   },
   {
     videoTitle: "Split Up",

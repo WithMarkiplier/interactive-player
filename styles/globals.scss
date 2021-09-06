@@ -81,3 +81,27 @@ body {
 .bi.bi-diagram .bi-link-canvas-layer .bi-diagram-link:hover .bi-link-path {
   stroke: #{$primary} !important;
 }
+
+.no-scroll {
+  overflow: hidden !important;
+
+  @include md-up {
+    padding-right: 6px !important;
+  }
+}
+
+.diagram-container {
+  & > svg {
+    & :hover {
+      stroke: $primary !important;
+    }
+  }
+}
+
+.css-1gtionp {
+  stroke: $primary !important;
+}
+
+.node {
+  min-width: 150px;
+}

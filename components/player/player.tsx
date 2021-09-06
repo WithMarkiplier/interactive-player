@@ -157,7 +157,7 @@ const Player: React.FC = () => {
 
   return (
     <Paper className={styles.player} onDoubleClick={doubleClickHanlder}>
-      <video id="player" ref={playerRef} autoPlay={false} />
+      <video id="player" ref={playerRef} autoPlay />
       <Portal container={choiceBarContainer}>
         <ChoiceBar />
       </Portal>

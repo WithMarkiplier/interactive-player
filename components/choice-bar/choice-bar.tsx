@@ -21,6 +21,8 @@ const ChoiceBar: React.FC = () => {
     setCurrentCG,
     choiceBarVisible,
     setChoiceBarVisible,
+    walkthrough,
+    setWalkthrough,
   } = useAppContext();
 
   const { choices, type } = currentCG;
@@ -63,6 +65,10 @@ const ChoiceBar: React.FC = () => {
       setCurrentCG(ncg);
       setChoices([...cgs, ncg]);
     }, 700);
+
+    if (!walkthrough.includes(ncg.watchCode)) {
+      setWalkthrough([...walkthrough, ncg.watchCode]);
+    }
 
     try {
       ReactGA.event({
