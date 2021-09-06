@@ -8,7 +8,6 @@ import "../styles/globals.scss";
 import "../styles/plyr.css";
 import "../styles/diagram.scss";
 import type { AppProps, NextWebVitalsMetric } from "next/app";
-import "beautiful-react-diagrams/styles.css";
 import { Toaster } from "react-hot-toast";
 
 export const reportWebVitals = (metric: NextWebVitalsMetric) => {
