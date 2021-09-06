@@ -8,6 +8,9 @@ import { ChoiceBar } from "../choice-bar";
 import { ChoiceHistory } from "../choice-history";
 import ReactGA from "react-ga";
 import toast from "react-hot-toast";
+import { EndingScreen } from "../ending-screen";
+import { choiceGroupData } from "../../src/data/data";
+import { getRandomFromArray } from "../../src/utils/utils";
 
 const Player: React.FC = () => {
   const {
@@ -20,6 +23,11 @@ const Player: React.FC = () => {
     setChoiceBarVisible,
     endings,
     setEndings,
+    settings,
+    setCurrentCG,
+    setChoices,
+    walkthrough,
+    setWalkthrough,
   } = useAppContext();
 
   const cg = currentCG;
@@ -27,8 +35,10 @@ const Player: React.FC = () => {
 
   const [choiceBarContainer, setChoiceBarContainer] = useState(null);
   const [choiceHistoryContainer, setChoiceHistoryContainer] = useState(null);
+  const [endingScreenContainer, setEndingScreenContainer] = useState(null);
 
   const [currentTime, setCurrentTime] = useState(0);
+  const [showEndingScreen, setShowEndingScreen] = useState(false);
 
   useEffect(() => {
     if (
@@ -75,7 +85,65 @@ const Player: React.FC = () => {
     setCurrentTime(ct);
   };
 
-  const handleVideoEnd = (event: Plyr.PlyrEvent) => {};
+  const handleVideoEnd = (event: Plyr.PlyrEvent) => {
+    const pl = player ?? event.detail.plyr;
+
+    if (currentCG.type === "end" && !showEndingScreen) {
+      setShowEndingScreen(true);
+      return;
+    }
+
+    // if (settings.autoplay && currentCG.type !== "end") {
+    //   const random = getRandomFromArray(currentCG.choices);
+
+    //   const ncg = choiceGroupData.find(
+    //     (x) => x.watchCode === random.nextChoiceGroupWatchCode
+    //   );
+
+    //   const src: Plyr.SourceInfo = {
+    //     type: "video",
+    //     title: ncg.videoTitle,
+    //     sources: [
+    //       {
+    //         src: `https://www.youtube.com/watch?v=${ncg.watchCode}`,
+    //         provider: "youtube",
+    //       },
+    //     ],
+    //   };
+    //   pl.source = src;
+    //   setChoiceBarVisible(false);
+
+    //   setTimeout(() => {
+    //     try {
+    //       pl.play();
+    //     } catch (e) {
+    //       console.log(e);
+    //     }
+    //     setCurrentCG(ncg);
+    //     setChoices([...cgs, ncg]);
+    //   }, 1000);
+
+    //   if (!walkthrough.includes(ncg.watchCode)) {
+    //     setWalkthrough([...walkthrough, ncg.watchCode]);
+    //   }
+
+    //   try {
+    //     ReactGA.event({
+    //       category: "video_auto_choice",
+    //       action: "Autoplay decision",
+    //       label: `${random.text} -> ${ncg.watchCode}`,
+    //     });
+    //   } catch (e) {
+    //     console.log(e);
+    //   }
+    // }
+  };
+
+  const handlePlay = (event: Plyr.PlyrEvent) => {
+    if (showEndingScreen) {
+      setShowEndingScreen(false);
+    }
+  };
 
   useEffect(() => {
     if (!player) {
@@ -92,19 +160,29 @@ const Player: React.FC = () => {
     rebind();
   }, [player?.source]);
 
-  const rebind = () => {
-    player.off("timeupdate", handleTimeChange);
-    player.off("ended", handleVideoEnd);
+  const rebind = (p: Plyr = player) => {
+    if (!p) return;
+    p.off("timeupdate", handleTimeChange);
+    p.on("timeupdate", handleTimeChange);
 
-    player.on("timeupdate", handleTimeChange);
-    player.on("ended", handleVideoEnd);
+    p.off("ended", handleVideoEnd);
+    p.on("ended", handleVideoEnd);
+
+    p.off("play", handlePlay);
+    p.on("play", handlePlay);
   };
 
   const doubleClickHanlder = (event) => {
     event.preventDefault();
   };
 
+  useEffect(() => {
+    rebind();
+  }, [settings]);
+
   const initPlyr = () => {
+    const first = choiceGroupData.find((x) => x.type === "start");
+
     const p = new Plyr("#player", {
       controls: [
         "play-large",
@@ -127,7 +205,7 @@ const Player: React.FC = () => {
       title: "A heist with Markiplier",
       sources: [
         {
-          src: "https://www.youtube.com/watch?v=9TjfkXmwbTs",
+          src: `https://www.youtube.com/watch?v=${first.watchCode}`,
           provider: "youtube",
         },
       ],
@@ -144,8 +222,7 @@ const Player: React.FC = () => {
 
     // p.language = "auto";
 
-    p.on("timeupdate", handleTimeChange);
-    p.on("ended", handleVideoEnd);
+    rebind(p);
     setPlayer(p);
 
     const playerContainer = document.getElementsByClassName("plyr")[0];
@@ -163,6 +240,13 @@ const Player: React.FC = () => {
     container2.className = styles.choiceHistoryContainer;
     playerContainer.appendChild(container2);
     setChoiceHistoryContainer(container2);
+
+    /* Choice History */
+    const container3 = document.createElement("div");
+    container3.id = "endingScreenContainer";
+    container3.className = styles.endingScreenContainer;
+    playerContainer.appendChild(container3);
+    setEndingScreenContainer(container3);
   };
 
   // const playVideo = (url: string, p?: Plyr) => {
@@ -179,6 +263,9 @@ const Player: React.FC = () => {
       <video id="player" ref={playerRef} autoPlay />
       <Portal container={choiceBarContainer}>
         <ChoiceBar />
+      </Portal>
+      <Portal container={endingScreenContainer}>
+        <EndingScreen show={showEndingScreen} />
       </Portal>
     </Paper>
   );

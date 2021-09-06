@@ -10,6 +10,9 @@ import { IChoiceGroup } from "../../src/types/types";
 import { choiceGroupData } from "../../src/data/data";
 import toast from "react-hot-toast";
 
+interface ISettings {
+  autoplay: boolean;
+}
 export interface IAppContextVals {
   player: Plyr;
   setPlayer: (player: Plyr) => void;
@@ -26,6 +29,8 @@ export interface IAppContextVals {
   setCurrentCG: (currentCG: IChoiceGroup) => void;
   walkthrough: string[];
   setWalkthrough: (walkthrough: string[]) => void;
+  settings: ISettings;
+  setSettings: (settings: ISettings) => void;
 }
 
 export const defaults: IAppContextVals = {
@@ -44,6 +49,8 @@ export const defaults: IAppContextVals = {
   setCurrentCG: null,
   walkthrough: [choiceGroupData.find((x) => x.type === "start").watchCode],
   setWalkthrough: null,
+  settings: { autoplay: true },
+  setSettings: null,
 };
 
 export const AppContext = createContext<IAppContextVals>(defaults);
@@ -59,6 +66,7 @@ const AppContextProvider: React.FC<{} | IAppContextVals> = ({ children }) => {
     defaults.walkthrough
   );
   const [currentCG, setCurrentCG] = useState(defaults.currentCG);
+  const [settings, setSettings] = useState<ISettings>(defaults.settings);
 
   useEffect(() => {
     if (window) {
@@ -71,6 +79,21 @@ const AppContextProvider: React.FC<{} | IAppContextVals> = ({ children }) => {
       }
     }
   }, [endings]);
+
+  useEffect(() => {
+    if (window) {
+      if (settings) {
+        try {
+          const rSettings = JSON.parse(window.localStorage.getItem("settings"));
+
+          if (rSettings !== settings && rSettings)
+            window.localStorage.setItem("settings", JSON.stringify(settings));
+        } catch (e) {
+          console.log(e);
+        }
+      }
+    }
+  }, [settings]);
 
   useEffect(() => {
     if (window) {
@@ -103,9 +126,7 @@ const AppContextProvider: React.FC<{} | IAppContextVals> = ({ children }) => {
       if (storedEndings) {
         const eIds = JSON.parse(storedEndings) as number[];
 
-        if (!eIds) return;
-
-        setEndings(eIds);
+        if (eIds) setEndings(eIds);
       }
 
       const storedWalkthrough = window.localStorage.getItem("walkthrough");
@@ -113,9 +134,14 @@ const AppContextProvider: React.FC<{} | IAppContextVals> = ({ children }) => {
       if (storedWalkthrough) {
         const wIds = JSON.parse(storedWalkthrough) as string[];
 
-        if (!wIds) return;
+        if (wIds) setWalkthrough(wIds);
+      }
 
-        setWalkthrough(wIds);
+      const storedSettings = window.localStorage.getItem("settings");
+      if (storedSettings) {
+        const ap = JSON.parse(storedSettings) as ISettings;
+
+        if (ap) setSettings(ap);
       }
     }
   }, []);
@@ -138,6 +164,8 @@ const AppContextProvider: React.FC<{} | IAppContextVals> = ({ children }) => {
         setCurrentCG,
         walkthrough,
         setWalkthrough,
+        settings,
+        setSettings,
       }}
     >
       {children}

@@ -30,6 +30,7 @@ const Page: React.FC = () => {
       </Head>
       <div className="container pb-5">
         <div className="d-flex flex-column">
+          <h1 className="visually-hidden">A Heist with Markiplier</h1>
           <Player />
           <Controls />
           <Paper className="my-2 p-2 pt-4">
