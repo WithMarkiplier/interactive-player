@@ -47,6 +47,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
           crossOrigin="anonymous"
         ></link>
         <meta name="author" content="koudy008" />
+        <link rel="canonical" href="https://heist.withmarkiplier.com/" />
       </Head>
       <AContext.Provider>
         <Toaster
