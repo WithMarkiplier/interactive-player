@@ -20,7 +20,7 @@
 .srd-diagram__selector {
   position: absolute;
   background-color: rgba(0, 192, 255, 0.2);
-  border: solid 2px #00c0ff;
+  border: solid 2px #ff0000;
 }
 
 .srd-link-layer {
@@ -58,7 +58,7 @@
 }
 
 .srd-node--selected > * {
-  border-color: #00c0ff !important;
+  border-color: #f00 !important;
 }
 
 .srd-port {

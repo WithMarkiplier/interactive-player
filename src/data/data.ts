@@ -145,9 +145,9 @@ export const choiceGroupData: IChoiceGroup[] = [
     type: "end",
     showAt: 108,
     ending: {
-      endingNumber: 1,
-      endingCode: "L",
-      endingName: "Clever girl",
+      endingNumber: 4,
+      endingCode: "E",
+      endingName: "Friends 4 unlife",
     },
   },
   {

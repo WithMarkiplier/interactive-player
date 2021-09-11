@@ -10,9 +10,9 @@ export interface IChoiceGroup {
 }
 
 export interface IEnding {
-  endingNumber: number;
   endingName: string;
-  endingCode: string;
+  endingNumber?: number;
+  endingCode?: string;
 }
 
 export type ChoiceGroupType = "start" | "end" | "default";
